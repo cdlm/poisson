@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `PoissonDisk` struct in crate `poisson`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, PoissonDisk">
+
+    <title>poisson::PoissonDisk - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='index.html'>poisson</a></p><script>window.sidebarCurrent = {name: 'PoissonDisk', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>poisson</a>::<wbr><a class='struct' href=''>PoissonDisk</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-1236' class='srclink' href='../src/poisson/lib.rs.html#80-85' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct PoissonDisk&lt;R&gt; <span class='where'>where R: <a class='trait' href='../rand/trait.Rng.html' title='rand::Rng'>Rng</a></span> {
+    // some fields omitted
+}</pre><div class='docblock'><p>Builds PoissonGen with wanted properties.</p>
+
+<h1 id="examples" class='section-header'><a
+                           href="#examples">Examples</a></h1><pre class='rust rust-example-rendered'>
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>poisson</span>;
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>rand</span>;
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>nalgebra</span> <span class='kw'>as</span> <span class='ident'>na</span>;
+<span class='kw'>type</span> <span class='ident'>Vec2</span> <span class='op'>=</span> <span class='ident'>na</span>::<span class='ident'>Vec2</span><span class='op'>&lt;</span><span class='ident'>f64</span><span class='op'>&gt;</span>;
+<span class='kw'>use</span> <span class='ident'>poisson</span>::<span class='ident'>PoissonDisk</span>;
+
+<span class='kw'>fn</span> <span class='ident'>main</span>() {
+    <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>poisson</span> <span class='op'>=</span> <span class='ident'>PoissonDisk</span>::<span class='ident'>new</span>(<span class='ident'>rand</span>::<span class='ident'>weak_rng</span>()).<span class='ident'>build_radius</span>::<span class='op'>&lt;</span><span class='ident'>Vec2</span><span class='op'>&gt;</span>(<span class='number'>0.1</span>);
+    <span class='kw'>let</span> <span class='ident'>vecs</span> <span class='op'>=</span> <span class='ident'>poisson</span>.<span class='ident'>generate</span>();
+    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;{:?}&quot;</span>, <span class='ident'>vecs</span>);
+}</pre>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><code>impl&lt;R&gt; <a class='struct' href='../poisson/struct.PoissonDisk.html' title='poisson::PoissonDisk'>PoissonDisk</a>&lt;R&gt; <span class='where'>where R: <a class='trait' href='../rand/trait.Rng.html' title='rand::Rng'>Rng</a></span></code></h3><div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>(rand: R) -&gt; Self</code></h4>
+<div class='docblock'><p>Creates new Poisson-disk generator builder with random generator specified.</p>
+</div><h4 id='method.perioditic' class='method'><code>fn <a href='#method.perioditic' class='fnname'>perioditic</a>(self) -&gt; Self</code></h4>
+<div class='docblock'><p>Sets the generator to generate perioditic Poisson-disk distributions.</p>
+</div><h4 id='method.build_relative_radius' class='method'><code>fn <a href='#method.build_relative_radius' class='fnname'>build_relative_radius</a>&lt;V&gt;(self, radius: <a href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; <a class='struct' href='../poisson/struct.PoissonGen.html' title='poisson::PoissonGen'>PoissonGen</a>&lt;R, V&gt; <span class='where'>where V: <a class='trait' href='../poisson/trait.VecLike.html' title='poisson::VecLike'>VecLike</a></span></code></h4>
+<div class='docblock'><p>Builds the generator with relative radius specified.
+Radius should be ]0, 1]</p>
+</div><h4 id='method.build_radius' class='method'><code>fn <a href='#method.build_radius' class='fnname'>build_radius</a>&lt;V&gt;(self, radius: <a href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; <a class='struct' href='../poisson/struct.PoissonGen.html' title='poisson::PoissonGen'>PoissonGen</a>&lt;R, V&gt; <span class='where'>where V: <a class='trait' href='../poisson/trait.VecLike.html' title='poisson::VecLike'>VecLike</a></span></code></h4>
+<div class='docblock'><p>Builds the generator with radius specified.
+Radius should be ]0, √2 / 2]</p>
+</div><h4 id='method.build_samples' class='method'><code>fn <a href='#method.build_samples' class='fnname'>build_samples</a>&lt;V&gt;(self, samples: <a href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, relative_radius: <a href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>) -&gt; <a class='struct' href='../poisson/struct.PoissonGen.html' title='poisson::PoissonGen'>PoissonGen</a>&lt;R, V&gt; <span class='where'>where V: <a class='trait' href='../poisson/trait.VecLike.html' title='poisson::VecLike'>VecLike</a></span></code></h4>
+<div class='docblock'><p>Builds the generator with radius calculated so that approximately specified number of samples are generated.
+Amount of samples should be larger than 0.
+Relative radius should be [0, 1].
+For non-perioditic this is supported only for 2, 3 and 4 dimensional generation.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "poisson";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>
